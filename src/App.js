@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'space-between',
         padding: '1rem',
-        marginBottom: '2rem',
+        marginBottom: '1rem',
     },
     stickToBottom: {
         width: '100%',
@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#f7f7f7',
     },
     balanceDisplay: {
-        marginBottom: '2rem',
+        marginBottom: '3rem',
     },
     topMenu: {
         padding: '0.5rem',
@@ -164,7 +164,7 @@ function TopBar(props) {
                     onClick={() => setDateRange('week')}
                     color={selectedRange === 'week' ? undefined : 'inherit'}
                 >
-                    Week {moment().format('w')}
+                    This Week
                     {
                         lowBalanceRanges.indexOf('week') >= 0 && (
                             <PriorityHighIcon className={classes.warningIcon}/>
