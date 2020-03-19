@@ -62,7 +62,8 @@ const useStyles = makeStyles(theme => ({
         color: '#f50057',
     },
     link: {
-        display: 'flex'
+        display: 'flex',
+        textDecoration: 'none!important'
     }
 }));
 
@@ -162,36 +163,32 @@ function TopBar(props) {
                 <Link
                     className={classes.link}
                     onClick={() => setDateRange('week')}
-                    color={selectedRange === 'week' ? undefined : 'inherit'}
+                    color={lowBalanceRanges.indexOf('week') >= 0 ? 'secondary' : undefined}
+                    style={{
+                        borderBottom: selectedRange === 'week' ? '2px solid' : 'none',
+                    }}
                 >
                     This Week
-                    {
-                        lowBalanceRanges.indexOf('week') >= 0 && (
-                            <PriorityHighIcon className={classes.warningIcon}/>
-                        )
-                    }
                 </Link>
                 <Link
+                    className={classes.link}
                     onClick={() => setDateRange('month')}
-                    color={selectedRange === 'month' ? undefined : 'inherit'}
+                    color={lowBalanceRanges.indexOf('month') >= 0 ? 'secondary' : undefined}
+                    style={{
+                        borderBottom: selectedRange === 'month' ? '2px solid' : 'none',
+                    }}
                 >
                     {moment().format('MMMM')}
-                    {
-                        lowBalanceRanges.indexOf('month') >= 0 && (
-                            <PriorityHighIcon className={classes.warningIcon}/>
-                        )
-                    }
                 </Link>
                 <Link
+                    className={classes.link}
                     onClick={() => setDateRange('year')}
-                    color={selectedRange === 'year' ? undefined : 'inherit'}
+                    color={lowBalanceRanges.indexOf('year') >= 0 ? 'secondary' : undefined}
+                    style={{
+                        borderBottom: selectedRange === 'year' ? '2px solid' : 'none',
+                    }}
                 >
                     {moment().format('Y')}
-                    {
-                        lowBalanceRanges.indexOf('year') >= 0 && (
-                            <PriorityHighIcon className={classes.warningIcon}/>
-                        )
-                    }
                 </Link>
             </Breadcrumbs>
             <IconButton aria-label="setting" size="small" className={classes.icon}>
@@ -207,8 +204,11 @@ function RemainingBalance(props) {
 
     return (
         <Box className={classes.balanceDisplay} textAlign="center">
-            <Typography variant="overline">
-                Remaining
+            <Typography variant="h5" color="secondary">
+                Entertainment
+            </Typography>
+            <Typography variant="overline" color="secondary">
+                12% Over
             </Typography>
             <Typography variant="h1" color={remainingBudget < 0 ? 'secondary' : undefined}>
                 ${remainingBudget}
@@ -302,7 +302,7 @@ function BottomNav(props) {
             showLabels
         >
             <BottomNavigationAction value="learn" label={`${remainingPct['learn']}%`} icon="Learn"/>
-            <BottomNavigationAction value="enjoy" label={`${remainingPct['enjoy']}%`} icon="Enjoy"/>
+            <BottomNavigationAction value="enjoy" label={`${remainingPct['enjoy']}%`} icon="Ent. / Want"/>
             <BottomNavigationAction value="fuel" label={`${remainingPct['fuel']}%`} icon="Fuel"/>
             <BottomNavigationAction value="grocery" label={`${remainingPct['grocery']}%`} icon="Grocery"/>
         </BottomNavigation>
